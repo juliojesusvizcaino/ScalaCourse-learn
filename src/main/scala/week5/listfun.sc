@@ -7,3 +7,7 @@ def pack[T](xs: List[T]): List[List[T]] = xs match {
 }
 
 pack(List("a", "a", "a", "b", "c", "c", "a"))
+
+def encode[T](xs: List[T]): List[(T, Int)] = pack(xs) map (y => (y.head, y.length))
+
+encode(List("a", "a", "a", "b", "c", "c", "a"))
