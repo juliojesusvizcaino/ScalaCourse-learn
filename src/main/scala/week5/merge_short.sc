@@ -3,11 +3,11 @@ def msort[T](xs: List[T])(implicit ord: Ordering[T]): List[T] = {
   if (n == 0) xs
   else {
     def merge(xs: List[T], ys: List[T]): List[T] = (xs, ys) match {
-      case (Nil, y) => ys
-      case (x, Nil) => xs
-      case (x :: xs1, y :: ys1) =>
-        if (ord.lt(x, y)) x :: merge(xs1, ys)
-        else y :: merge(xs, ys1)
+      case (Nil, _) => ys
+      case (_, Nil) => xs
+      case (x2 :: xs1, y2 :: ys1) =>
+        if (ord.lt(x2, y2)) x2 :: merge(xs1, ys)
+        else y2 :: merge(xs, ys1)
     }
 
     val (x, y) = xs splitAt n
